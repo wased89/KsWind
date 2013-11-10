@@ -64,13 +64,49 @@ namespace KsWind
         private void OnWindow(int _windowId)
         {
 
-
-            windSpeed.ToString("F2");
+            if(windSpeed == 0.1)
+            {
                 GUILayout.BeginHorizontal(GUILayout.Width(250));
-                GUILayout.Label("Wind Speed: " + 10 * windSpeed + "kn");
+                GUILayout.Label("Wind Speed: " + 1 + "kn");
                 GUILayout.EndHorizontal();
                 GUI.DragWindow();
-            
+            }
+
+            else if (windSpeed == 0.2)
+            {
+                GUILayout.BeginHorizontal(GUILayout.Width(250));
+                GUILayout.Label("Wind Speed: " + 2 + "kn");
+                GUILayout.EndHorizontal();
+                GUI.DragWindow();
+            }
+            else if (windSpeed == 0.3)
+            {
+                GUILayout.BeginHorizontal(GUILayout.Width(250));
+                GUILayout.Label("Wind Speed: " + 3 + "kn");
+                GUILayout.EndHorizontal();
+                GUI.DragWindow();
+            }
+            else if (windSpeed == 0.4)
+            {
+                GUILayout.BeginHorizontal(GUILayout.Width(250));
+                GUILayout.Label("Wind Speed: " + 4 + "kn");
+                GUILayout.EndHorizontal();
+                GUI.DragWindow();
+            }
+            else if (windSpeed == 0.5)
+            {
+                GUILayout.BeginHorizontal(GUILayout.Width(250));
+                GUILayout.Label("Wind Speed: " + 5 + "kn");
+                GUILayout.EndHorizontal();
+                GUI.DragWindow();
+            }
+            else if (windSpeed == 0.6)
+            {
+                GUILayout.BeginHorizontal(GUILayout.Width(250));
+                GUILayout.Label("Wind Speed: " + 6 + "kn");
+                GUILayout.EndHorizontal();
+                GUI.DragWindow();
+            }
 
             
             
