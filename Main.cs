@@ -47,10 +47,10 @@ namespace KsWind
 
         public override void OnUpdate()
         {
-            if(this.vessel == FlightGlobals.ActiveVessel)
+            double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
+            if(this.vessel == FlightGlobals.ActiveVessel && Pressure > 0)
             {
 
-                
                 this.rigidbody.AddForce(windSpeed,0,0);
 
             }
