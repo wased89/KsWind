@@ -90,7 +90,6 @@ namespace KsWind
 
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             double HighestPressure = FlightGlobals.getStaticPressure(0.0);
-            double rho = FlightGlobals.getAtmDensity(Pressure);
 
             Pressure.ToString("F2");
             
