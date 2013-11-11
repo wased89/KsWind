@@ -59,9 +59,7 @@ namespace KsWind
         private void OnDraw()
         {
 
-            double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
-            double HighestPressure = FlightGlobals.getStaticPressure(0.0);
-            double rho = FlightGlobals.getAtmDensity(Pressure);
+           
 
             vesselHeight = FlightGlobals.ship_altitude;
             if (Pressure != 0)
@@ -75,16 +73,7 @@ namespace KsWind
                 windSpeed = 0;
             }
             Pressure.ToString("F2");
-            if (inAtmo == true)
-            {
-                GUILayout.BeginHorizontal(GUILayout.Width(500));
-                GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
-                GUILayout.Label("Vessel Altitude: " + vesselHeight);
-                GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.00"));
-                GUILayout.Label("Current Atmoshperic Pressure: " + Pressure.ToString("0.00"));
-                GUILayout.EndHorizontal();
-                GUI.DragWindow();
-            }
+            
 
             if (this.vessel == FlightGlobals.ActiveVessel && this.part.IsPrimary(this.vessel.parts, this.ClassID))
                  
@@ -99,9 +88,13 @@ namespace KsWind
         private void OnWindow(int _windowId)
         {
 
+            double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
+            double HighestPressure = FlightGlobals.getStaticPressure(0.0);
+            double rho = FlightGlobals.getAtmDensity(Pressure);
+
             Pressure.ToString("F2");
-            if (inAtmo == true)
-            {
+            
+            
                 GUILayout.BeginHorizontal(GUILayout.Width(500));
                 GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
                 GUILayout.Label("Vessel Altitude: " + vesselHeight);
@@ -109,20 +102,8 @@ namespace KsWind
                 GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.00"));
                 GUILayout.EndHorizontal();
                 GUI.DragWindow();
-            }
-            else
-            {
-                GUILayout.BeginHorizontal(GUILayout.Width(500));
-                GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
-                GUILayout.Label("Vessel Altitude: " + vesselHeight);
-                GUILayout.Label("Current Atmoshperic Pressure: " + Pressure.ToString("0.00"));
-                GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.00"));
-                GUILayout.EndHorizontal();
-                GUI.DragWindow();
-            }
+            
                 
-
-
             
         }
 
