@@ -9,7 +9,13 @@ namespace KsWind
     {
        
         private static Rect _windowPosition = new Rect();
-        public float windSpeed = UnityEngine.Random.Range(0, 6)/10;
+        public float windSpeed = UnityEngine.Random.Range(0, 6)/ 10.0f;
+        public bool inAtmo = true;
+        public int atmoheight = 45000;
+        public double vesselHeight = 0;
+        public double atmoDensity = 0;
+        public double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
+        public double HighestPressure = FlightGlobals.getStaticPressure(0);
 
         public override void OnStart(StartState state)
         {
@@ -34,7 +40,7 @@ namespace KsWind
         {
             PluginConfiguration config = PluginConfiguration.CreateForType<KsWind>();
             config.load();
-            windSpeed = UnityEngine.Random.Range(0, 6)/10;
+            windSpeed = UnityEngine.Random.Range(0, 6)/ 10.0f;
             _windowPosition = config.GetValue<Rect>("Window Position");
         }
 
@@ -43,6 +49,31 @@ namespace KsWind
             if(this.vessel == FlightGlobals.ActiveVessel)
             {
 
+                double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
+                double HighestPressure = FlightGlobals.getStaticPressure(0);
+                double rho = FlightGlobals.getAtmDensity(Pressure);
+
+                vesselHeight = FlightGlobals.ship_altitude;
+                if(Pressure != 0)
+                {
+                    inAtmo = true;
+                }
+                else
+                {
+                    inAtmo = false;
+                    windSpeed = 0;
+                }
+                
+                if (inAtmo == true)
+                {
+                    GUILayout.BeginHorizontal(GUILayout.Width(500));
+                    GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
+                    GUILayout.Label("Vessel Altitude: " + vesselHeight);
+                    GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure);
+                    GUILayout.Label("Current Atmoshperic Pressure: " + Pressure);
+                    GUILayout.EndHorizontal();
+                    GUI.DragWindow();
+                }
                 
                 this.rigidbody.AddForce(windSpeed,0,0);
 
@@ -64,51 +95,30 @@ namespace KsWind
         private void OnWindow(int _windowId)
         {
 
-            if(windSpeed == 0.1)
-            {
-                GUILayout.BeginHorizontal(GUILayout.Width(250));
-                GUILayout.Label("Wind Speed: " + 1 + "kn");
-                GUILayout.EndHorizontal();
-                GUI.DragWindow();
-            }
 
-            else if (windSpeed == 0.2)
+            if (inAtmo == true)
             {
-                GUILayout.BeginHorizontal(GUILayout.Width(250));
-                GUILayout.Label("Wind Speed: " + 2 + "kn");
+                GUILayout.BeginHorizontal(GUILayout.Width(500));
+                GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
+                GUILayout.Label("Vessel Altitude: " + vesselHeight);
+                GUILayout.Label("Current Atmoshperic Pressure: " + Pressure);
+                GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure);
                 GUILayout.EndHorizontal();
                 GUI.DragWindow();
             }
-            else if (windSpeed == 0.3)
+            else
             {
-                GUILayout.BeginHorizontal(GUILayout.Width(250));
-                GUILayout.Label("Wind Speed: " + 3 + "kn");
+                GUILayout.BeginHorizontal(GUILayout.Width(500));
+                GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
+                GUILayout.Label("Vessel Altitude: " + vesselHeight);
+                GUILayout.Label("Current Atmoshperic Pressure: " + Pressure);
+                GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure);
                 GUILayout.EndHorizontal();
                 GUI.DragWindow();
             }
-            else if (windSpeed == 0.4)
-            {
-                GUILayout.BeginHorizontal(GUILayout.Width(250));
-                GUILayout.Label("Wind Speed: " + 4 + "kn");
-                GUILayout.EndHorizontal();
-                GUI.DragWindow();
-            }
-            else if (windSpeed == 0.5)
-            {
-                GUILayout.BeginHorizontal(GUILayout.Width(250));
-                GUILayout.Label("Wind Speed: " + 5 + "kn");
-                GUILayout.EndHorizontal();
-                GUI.DragWindow();
-            }
-            else if (windSpeed == 0.6)
-            {
-                GUILayout.BeginHorizontal(GUILayout.Width(250));
-                GUILayout.Label("Wind Speed: " + 6 + "kn");
-                GUILayout.EndHorizontal();
-                GUI.DragWindow();
-            }
+                
 
-            
+
             
         }
 
