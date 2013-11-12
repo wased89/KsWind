@@ -62,9 +62,14 @@ namespace KsWind
            
 
             vesselHeight = FlightGlobals.ship_altitude;
-            if (Pressure != 0)
+            if(Pressure != 0 && vessel.mainBody.name == "Duna")
             {
                 inAtmo = true;
+                float windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
+            }
+            if (Pressure != 0)
+            {
+                
                 windSpeed = TwindSpeed;
             }
             else
@@ -72,7 +77,7 @@ namespace KsWind
                 inAtmo = false;
                 windSpeed = 0;
             }
-            Pressure.ToString("F2");
+            Pressure.ToString("F3");
             
 
             if (this.vessel == FlightGlobals.ActiveVessel && this.part.IsPrimary(this.vessel.parts, this.ClassID))
@@ -91,16 +96,30 @@ namespace KsWind
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             double HighestPressure = FlightGlobals.getStaticPressure(0.0);
 
-            Pressure.ToString("F2");
+            Pressure.ToString("F3");
             
-            
+            if (Pressure != 0)
+            {
                 GUILayout.BeginHorizontal(GUILayout.Width(500));
                 GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
                 GUILayout.Label("Vessel Altitude: " + vesselHeight);
                 GUILayout.Label("Current Atmoshperic Pressure: " + Pressure.ToString("0.00"));
                 GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.00"));
+                GUILayout.Label("InAtmo? : True");
                 GUILayout.EndHorizontal();
                 GUI.DragWindow();
+            }
+            else
+            {
+                GUILayout.BeginHorizontal(GUILayout.Width(500));
+                GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
+                GUILayout.Label("Vessel Altitude: " + vesselHeight);
+                GUILayout.Label("Current Atmoshperic Pressure: " + Pressure.ToString("0.00"));
+                GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.00"));
+                GUILayout.Label("InAtmo? : False");
+                GUILayout.EndHorizontal();
+                GUI.DragWindow();
+            }
             
                 
             
