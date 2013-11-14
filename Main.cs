@@ -62,15 +62,11 @@ namespace KsWind
            
 
             vesselHeight = FlightGlobals.ship_altitude;
-            if(Pressure != 0 && vessel.mainBody.name == "Duna")
-            {
-                inAtmo = true;
-                float windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
-            }
+            
             if (Pressure != 0)
             {
-                
-                windSpeed = TwindSpeed;
+
+                windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
             }
             else
             {
