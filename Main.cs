@@ -68,12 +68,11 @@ namespace KsWind
         private void OnDraw()
         {
 
-
+            double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             vesselHeight = FlightGlobals.ship_altitude;
             
             if (Pressure != 0)
             {
-                windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
                 windSpeedActive = true;
                 
             }
