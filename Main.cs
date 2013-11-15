@@ -26,7 +26,7 @@ namespace KsWind
                 RenderingManager.AddToPostDrawQueue(0, OnDraw);
                
             }
-            if (inAtmo == true)
+            if (windSpeedActive == true)
             {
                 windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
                 
