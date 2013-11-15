@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using KsWind.Extensions;
 using KSP.IO;
@@ -22,6 +23,7 @@ namespace KsWind
         public override void OnStart(StartState state)
         {
 
+            UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
             if (state != StartState.Editor)
             {
                 RenderingManager.AddToPostDrawQueue(0, OnDraw);
@@ -29,6 +31,7 @@ namespace KsWind
             }
             if (inAtmo == true)
             {
+                UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
                 windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
             }
             else
@@ -57,6 +60,7 @@ namespace KsWind
         public override void OnUpdate()
         {
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
+            UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
             if(this.vessel == FlightGlobals.ActiveVessel && windSpeedActive == true)
             {
 
@@ -68,21 +72,22 @@ namespace KsWind
         private void OnDraw()
         {
 
-            
+            UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
 
             vesselHeight = FlightGlobals.ship_altitude;
             
             if (Pressure != 0)
             {
-
+                UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
                 windSpeedActive = true;
                 
             }
             else
             {
+                UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
                 windSpeedActive = false;
             }
-            Pressure.ToString("F3");
+            
             
 
             if (this.vessel == FlightGlobals.ActiveVessel && this.part.IsPrimary(this.vessel.parts, this.ClassID))
@@ -97,7 +102,7 @@ namespace KsWind
 
         private void OnWindow(int _windowId)
         {
-
+            UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             double HighestPressure = FlightGlobals.getStaticPressure(0.0);
             
@@ -105,11 +110,12 @@ namespace KsWind
             
             if (Pressure != 0)
             {
+                
                 GUILayout.BeginHorizontal(GUILayout.Width(600));
                 GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
                 GUILayout.Label("Vessel Altitude: " + vesselHeight);
-                GUILayout.Label("Current Atmoshperic Pressure: " + Pressure.ToString("0.00"));
-                GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.00"));
+                GUILayout.Label("\rCurrent Atmoshperic Pressure: " + Pressure.ToString("0.000"));
+                GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.000"));
                 GUILayout.Label("InAtmo? : True");
                 GUILayout.EndHorizontal();
                 GUI.DragWindow();
@@ -119,8 +125,8 @@ namespace KsWind
                 GUILayout.BeginHorizontal(GUILayout.Width(600));
                 GUILayout.Label("windspeed: " + "0" + " knots");
                 GUILayout.Label("Vessel Altitude: " + vesselHeight);
-                GUILayout.Label("Current Atmoshperic Pressure: " + Pressure.ToString("0.00"));
-                GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.00"));
+                GUILayout.Label("\rCurrent Atmoshperic Pressure: " + Pressure.ToString("0.000"));
+                GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.000"));
                 GUILayout.Label("InAtmo? : False");
                 GUILayout.EndHorizontal();
                 GUI.DragWindow();
