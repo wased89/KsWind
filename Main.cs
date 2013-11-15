@@ -117,7 +117,7 @@ namespace KsWind
             else
             {
                 GUILayout.BeginHorizontal(GUILayout.Width(600));
-                GUILayout.Label("windspeed: " + (windSpeed * 10) + " knots");
+                GUILayout.Label("windspeed: " + "0" + " knots");
                 GUILayout.Label("Vessel Altitude: " + vesselHeight);
                 GUILayout.Label("Current Atmoshperic Pressure: " + Pressure.ToString("0.00"));
                 GUILayout.Label("Highest Atmospheric Pressure: " + HighestPressure.ToString("0.00"));
