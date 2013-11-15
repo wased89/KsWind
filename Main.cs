@@ -11,7 +11,6 @@ namespace KsWind
         private static Rect _windowPosition = new Rect();
         public float windSpeed = Random.Range(0, 6) / 10.0f;
         public bool inAtmo = true;
-        public int atmoheight = 45000;
         public double vesselHeight = 0;
         public double atmoDensity = 0;
         double Pressure = FlightGlobals.ActiveVessel.staticPressure;
@@ -29,7 +28,6 @@ namespace KsWind
             }
             if (inAtmo == true)
             {
-                UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
                 windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
                 
             }
@@ -120,7 +118,6 @@ namespace KsWind
             }
             else
             {
-                
                 GUILayout.BeginHorizontal(GUILayout.Width(600));
                 GUILayout.Label("windspeed: " + "0" + " kernats");
                 GUILayout.Label("Vessel Altitude: " + vesselHeight);
