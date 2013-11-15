@@ -102,7 +102,6 @@ namespace KsWind
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             double HighestPressure = FlightGlobals.getStaticPressure(0.0);
             
-            Pressure.ToString("F3");
             
             if (Pressure != 0)
             {
