@@ -14,7 +14,7 @@ namespace KsWind
         public double vesselHeight = 0;
         double Pressure = FlightGlobals.ActiveVessel.staticPressure;
         public double HighestPressure = FlightGlobals.getStaticPressure(0);
-        public bool windSpeedActive;
+        public bool windSpeedActive = true;
 
         public override void OnStart(StartState state)
         {
@@ -50,14 +50,12 @@ namespace KsWind
         {
             PluginConfiguration config = PluginConfiguration.CreateForType<KsWind>();
             config.load();
-            
             _windowPosition = config.GetValue<Rect>("Window Position");
         }
 
         public override void OnUpdate()
         {
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
-            
             if(this.vessel == FlightGlobals.ActiveVessel && Pressure != 0)
             {
 
@@ -70,11 +68,11 @@ namespace KsWind
         {
             
             vesselHeight = FlightGlobals.ship_altitude;
-            
+            double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
+
             if (Pressure != 0)
             {
                 windSpeedActive = true;
-               
 
             }
             else
@@ -100,7 +98,7 @@ namespace KsWind
             
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             double HighestPressure = FlightGlobals.getStaticPressure(0.0);
-            
+            vesselHeight = FlightGlobals.ship_altitude;
             
             if (Pressure != 0)
             {
