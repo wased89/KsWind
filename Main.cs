@@ -53,9 +53,14 @@ namespace KsWind
             _windowPosition = config.GetValue<Rect>("Window Position");
         }
 
-        public override void OnUpdate()
+        public override void OnFixedUpdate()
         {
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
+            if (HighLogic.LoadedSceneIsFlight == true)
+            {
+                windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
+
+            }
             if(this.vessel == FlightGlobals.ActiveVessel && Pressure != 0)
             {
 
