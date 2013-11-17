@@ -5,7 +5,7 @@ using KSP.IO;
 namespace KsWind
 {
     
-    public class KsWind : PartModule
+    public class KsWind : PartModule 
     {
        
         private static Rect _windowPosition = new Rect();
@@ -53,7 +53,7 @@ namespace KsWind
             _windowPosition = config.GetValue<Rect>("Window Position");
         }
 
-        public override void OnFixedUpdate()
+        public void FixedUpdate()
         {
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             if (HighLogic.LoadedSceneIsFlight == true)
