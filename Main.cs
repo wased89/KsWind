@@ -56,21 +56,31 @@ namespace KsWind
 
         public void FixedUpdate()
         {
+            int caseSwitch(3);
+            double HighestPressure = FlightGlobals.getStaticPressure(0);
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             if (HighLogic.LoadedSceneIsFlight == true)
             {
+                switch (caseSwitch)
+                {
+                    case 1:
+                        if(Pressure > HighestPressure * 0.7 || Pressure < HighestPressure * 0.3)
+                            {
+                                windSpeed = UnityEngine.Random.Range(0, 3) / 10.0f;
+                            }
+                        break;
+                    default:
+                        {
+                            windSpeed = UnityEngine.Random.Range(3, 7) / 10.0f;
+                        }
+                        break;
+
+                }
                 if (Pressure < HighestPressure * 0.7 && Pressure > HighestPressure * 0.3)
                 {
                     windSpeed = UnityEngine.Random.Range(3, 7) / 10.0f;
                 }
-                if(Pressure > HighestPressure * 0.7)
-                {
-                    windSpeed = UnityEngine.Random.Range(0, 3) / 10.0f;
-                }
-                if(Pressure < HighestPressure * 0.3)
-                {
-                    windSpeed = UnityEngine.Random.Range(0, 3) / 10.0f;
-                }
+                
                 
                 
 
