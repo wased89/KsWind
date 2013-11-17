@@ -19,9 +19,10 @@ namespace KsWind
         public override void OnStart(StartState state)
         {
 
-            UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
+           
             if (state != StartState.Editor)
             {
+                UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
                 RenderingManager.AddToPostDrawQueue(0, OnDraw);
                 windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
                
@@ -58,7 +59,20 @@ namespace KsWind
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             if (HighLogic.LoadedSceneIsFlight == true)
             {
-                windSpeed = UnityEngine.Random.Range(0, 6) / 10.0f;
+                if (Pressure < HighestPressure * 0.7 && Pressure > HighestPressure * 0.3)
+                {
+                    windSpeed = UnityEngine.Random.Range(3, 7) / 10.0f;
+                }
+                if(Pressure > HighestPressure * 0.7)
+                {
+                    windSpeed = UnityEngine.Random.Range(0, 3) / 10.0f;
+                }
+                if(Pressure < HighestPressure * 0.3)
+                {
+                    windSpeed = UnityEngine.Random.Range(0, 3) / 10.0f;
+                }
+                
+                
 
             }
             if(this.vessel == FlightGlobals.ActiveVessel && Pressure != 0)
