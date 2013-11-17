@@ -56,7 +56,7 @@ namespace KsWind
 
         public void FixedUpdate()
         {
-            int caseSwitch(3);
+            int caseSwitch = 1;
             double HighestPressure = FlightGlobals.getStaticPressure(0);
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
             if (HighLogic.LoadedSceneIsFlight == true)
