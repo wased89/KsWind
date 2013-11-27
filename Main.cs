@@ -10,7 +10,6 @@ namespace KsWind
        
         private static Rect _windowPosition = new Rect();
         public float windSpeed = Random.Range(0, 6) / 10.0f;
-        public bool inAtmo = true;
         public double vesselHeight = 0;
         double Pressure = FlightGlobals.ActiveVessel.staticPressure;
         public double HighestPressure = FlightGlobals.getStaticPressure(0);
