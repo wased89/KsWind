@@ -71,7 +71,6 @@ namespace KsWind
                             windSpeed = UnityEngine.Random.Range(3, 7) / 10.0f;
                         }
                         break;
-
                 }
             }
             if(this.vessel == FlightGlobals.ActiveVessel && Pressure != 0)
