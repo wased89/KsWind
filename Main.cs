@@ -76,14 +76,6 @@ namespace KsWind
                         break;
 
                 }
-                if (Pressure < HighestPressure * 0.7 && Pressure > HighestPressure * 0.3)
-                {
-                    windSpeed = UnityEngine.Random.Range(3, 7) / 10.0f;
-                }
-                
-                
-                
-
             }
             if(this.vessel == FlightGlobals.ActiveVessel && Pressure != 0)
             {
