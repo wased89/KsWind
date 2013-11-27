@@ -88,7 +88,6 @@ namespace KsWind
         private void OnDraw()
         {
             
-            vesselHeight = FlightGlobals.ship_altitude;
             double Pressure = FlightGlobals.getStaticPressure(FlightGlobals.ship_altitude);
 
             if (Pressure != 0)
