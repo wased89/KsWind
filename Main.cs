@@ -18,7 +18,6 @@ namespace KsWind
         public override void OnStart(StartState state)
         {
 
-           
             if (state != StartState.Editor)
             {
                 UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks; 
@@ -35,7 +34,6 @@ namespace KsWind
             {
                 windSpeed = 0;
             }
-            
             
         }
 
